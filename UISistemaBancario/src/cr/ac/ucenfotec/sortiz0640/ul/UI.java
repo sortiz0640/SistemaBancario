@@ -1,4 +1,4 @@
-package ui;
+package cr.ac.ucenfotec.sortiz0640.ul;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,8 +1,7 @@
-package tl;
+package cr.ac.ucenfotec.sortiz0640.tl;
 
-import ui.UI;
-import ui.UICliente;
-import ui.UICuenta;
+import cr.ac.ucenfotec.sortiz0640.ul.UI;
+import cr.ac.ucenfotec.sortiz0640.ul.UICuenta;
 
 import java.io.IOException;
 

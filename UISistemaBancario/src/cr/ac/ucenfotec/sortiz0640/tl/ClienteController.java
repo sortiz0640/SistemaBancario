@@ -1,17 +1,16 @@
-package tl;
+package cr.ac.ucenfotec.sortiz0640.tl;
 
-import ui.UI;
-import ui.UICuenta;
-import ui.UIOperacion;
+import cr.ac.ucenfotec.sortiz0640.ul.UI;
+import cr.ac.ucenfotec.sortiz0640.ul.UICliente;
 
 import java.io.IOException;
 
-public class OperacionController {
+public class ClienteController {
 
-    // Controlador de Operaciones [Cuentas]
+    // Controlador de Clientes
 
     private UI ui = new UI(); // Clase de métodos para lectura y escritura en consola
-    private UIOperacion interfaz = new UIOperacion(); //
+    private UICliente interfaz = new UICliente(); //
 
     public void start() throws IOException {
         int opcion = -1;
@@ -24,22 +23,20 @@ public class OperacionController {
 
     public void procesarOpcion(int opcion) throws IOException {
         switch (opcion) {
-            case 1: deposito(); break;
-            case 2: retiro(); break;
+            case 1: registrar(); break;
+            case 2: listar(); break;
             case 0: break;
             default: ui.imprimirMensaje("Opción no válida. Intente nuevamente! \n");
         }
     }
 
-    public void deposito() throws IOException {
-
-        //todo: metodo para depositos en CUENTAS
+    public void registrar() throws IOException {
+        //todo: registro de clintes
 
     }
 
-    public void retiro() throws IOException {
-
-        //todo: metodo para retiros en CUENTAS
+    public void listar() throws IOException {
+        //todo: listar todos los clientes registrados
 
     }
 }

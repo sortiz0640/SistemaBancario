@@ -1,4 +1,4 @@
-import tl.PrincipalController;
+import cr.ac.ucenfotec.sortiz0640.tl.PrincipalController;
 
 import java.io.IOException;
 
