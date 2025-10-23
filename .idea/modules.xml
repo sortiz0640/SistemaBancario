@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SistemaBancario/SistemaBancario.iml" filepath="$PROJECT_DIR$/SistemaBancario/SistemaBancario.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SistemaBancario Project.iml" filepath="$PROJECT_DIR$/.idea/SistemaBancario Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UISistemaBancario/UISistemaBancario.iml" filepath="$PROJECT_DIR$/UISistemaBancario/UISistemaBancario.iml" />
+    </modules>
+  </component>
+</project>
