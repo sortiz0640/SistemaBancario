@@ -1,18 +1,18 @@
 package cr.ac.ucenfotec.sortiz0640.tl;
 
 import cr.ac.ucenfotec.sortiz0640.ul.UI;
-import cr.ac.ucenfotec.sortiz0640.ul.UIPrincipal;
+import cr.ac.ucenfotec.sortiz0640.ul.ViewApp;
 
 import java.io.IOException;
 
-public class PrincipalController {
+public class ControllerApp {
 
     // Controlador del Menú Principal del Programa
 
     private UI ui = new UI(); // Clase de métodos para lectura y escritura en consola
-    private UIPrincipal interfaz = new UIPrincipal(); // Clase de métodos para el menu principal del programa
-    private ClienteController clienteController = new ClienteController(); //
-    private CuentaController cuentaController = new CuentaController();
+    private ViewApp interfaz = new ViewApp(); // Clase de métodos para el menu principal del programa
+    private ControllerCliente clienteController = new ControllerCliente(); //
+    private ControllerCuenta cuentaController = new ControllerCuenta();
 
     public void start() throws IOException {
         int opcion = -1;

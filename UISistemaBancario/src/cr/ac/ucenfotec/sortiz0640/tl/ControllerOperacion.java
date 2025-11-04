@@ -1,16 +1,16 @@
 package cr.ac.ucenfotec.sortiz0640.tl;
 
 import cr.ac.ucenfotec.sortiz0640.ul.UI;
-import cr.ac.ucenfotec.sortiz0640.ul.UIOperacion;
+import cr.ac.ucenfotec.sortiz0640.ul.ViewOperacion;
 
 import java.io.IOException;
 
-public class OperacionController {
+public class ControllerOperacion {
 
     // Controlador de Operaciones [Cuentas]
 
     private UI ui = new UI(); // Clase de métodos para lectura y escritura en consola
-    private UIOperacion interfaz = new UIOperacion(); //
+    private ViewOperacion interfaz = new ViewOperacion(); //
 
     public void start() throws IOException {
         int opcion = -1;

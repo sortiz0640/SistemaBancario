@@ -5,27 +5,46 @@ import cr.ac.ucenfotec.sortiz0640.bl.entities.Cuenta;
 import cr.ac.ucenfotec.sortiz0640.bl.entities.Operacion;
 import cr.ac.ucenfotec.sortiz0640.dl.DataCuenta;
 
+import java.util.ArrayList;
+
 public class GestorCuenta {
 
     private DataCuenta db;
+    private GestorCliente gestorCliente = new GestorCliente();
 
     public GestorCuenta() {
         db = new DataCuenta();
     }
 
-    public String agregarCuenta(Cliente dueno, double monto) {
-        Cuenta tmpCuenta = new Cuenta(dueno, monto);
+    public String agregarCuenta(String cedula) {
+
+        Cliente dueno = gestorCliente.getClientePorCedula(cedula);
+        Cuenta tmpCuenta = new Cuenta(dueno);
         db.agregarCuenta(tmpCuenta);
-        return "Cuenta agregada correctamente!";
+        return "[INFO] Cuenta [" + tmpCuenta.getNumCuenta() + "] agregada correctamente!";
     }
 
     public String agregarOperacion(Cuenta cuenta, Operacion operacion) {
         cuenta.agregarOperacion(operacion);
-        return "Operación agregada correctamente!";
+        return "[INFO] Operación agregada correctamente!";
     }
 
     public void eliminarOperacion() {
 
     }
 
+    public boolean existenCuentas() {
+        return db.existenCuentas();
+    }
+
+    public ArrayList<String> getCuentasToStringPorCedula(String cedula) {
+
+        Cliente dueno = gestorCliente.getClientePorCedula(cedula);
+
+        if (dueno == null || !existenCuentas()) {
+            return null;
+        }
+
+        return db.getCuentasToStringPorCedula(cedula);
+    }
 }

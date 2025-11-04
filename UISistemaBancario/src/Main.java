@@ -1,4 +1,4 @@
-import cr.ac.ucenfotec.sortiz0640.tl.PrincipalController;
+import cr.ac.ucenfotec.sortiz0640.tl.ControllerApp;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        PrincipalController c = new PrincipalController();
+        ControllerApp c = new ControllerApp();
         c.start();
 
     }

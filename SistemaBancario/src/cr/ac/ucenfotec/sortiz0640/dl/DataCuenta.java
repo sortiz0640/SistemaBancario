@@ -19,4 +19,18 @@ public class DataCuenta {
     public ArrayList<Cuenta> getCuentas() {
         return cuentas;
     }
+
+    public boolean existenCuentas() {
+        return !cuentas.isEmpty();
+    }
+
+    public ArrayList<String> getCuentasToStringPorCedula(String cedula) {
+        ArrayList<String> lista = new ArrayList<>();
+        for (Cuenta cuenta : cuentas) {
+            if (cuenta.getDuenoCedula().equals(cedula)) {
+                lista.add(cuenta.toString());
+            }
+        }
+        return lista;
+    }
 }

@@ -21,6 +21,20 @@ public class DataCliente {
 
     }
 
+    public Cliente getClientePorCedula(String cedula) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCedula().equals(cedula)) {
+                return cliente;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean existenClientes() {
+        return !clientes.isEmpty();
+    }
+
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }
