@@ -9,16 +9,22 @@ public class ControllerApp {
 
     // Controlador del Menú Principal del Programa
 
-    private UI ui = new UI(); // Clase de métodos para lectura y escritura en consola
-    private ViewApp interfaz = new ViewApp(); // Clase de métodos para el menu principal del programa
-    private ControllerCliente clienteController = new ControllerCliente(); //
-    private ControllerCuenta cuentaController = new ControllerCuenta();
+    private UI interfaz = new UI();
+    private ViewApp view = new ViewApp();
+    private ControllerCliente clienteController;
+    private ControllerCuenta cuentaController;
+    private ControllerOperacion operacionController;
 
+    public ControllerApp(ControllerCliente clienteController, ControllerCuenta cuentaController, ControllerOperacion operacionController) {
+        this.clienteController = clienteController;
+        this.cuentaController = cuentaController;
+        this.operacionController = operacionController;
+    }
     public void start() throws IOException {
         int opcion = -1;
         do {
-            interfaz.mostrarMenu();
-            opcion = ui.leerOpcion();
+            view.mostrarMenu();
+            opcion = interfaz.leerOpcion();
             procesarOpcion(opcion);
         } while (opcion != 0);
     }
@@ -27,8 +33,9 @@ public class ControllerApp {
         switch (opcion) {
             case 1: clienteController.start(); break;
             case 2: cuentaController.start(); break;
-            case 0: ui.imprimirMensaje("Cerrando el programa..."); break;
-            default: ui.imprimirMensaje("Opción no válida. Intente nuevamente! \n");
+            case 3: operacionController.start(); break;
+            case 0: interfaz.imprimirMensaje("Cerrando el programa..."); break;
+            default: interfaz.imprimirMensaje("Opción no válida. Intente nuevamente! \n");
         }
     }
 }

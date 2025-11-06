@@ -1,6 +1,8 @@
 package cr.ac.ucenfotec.sortiz0640.tl;
 
+import cr.ac.ucenfotec.sortiz0640.bl.logic.GestorOperacion;
 import cr.ac.ucenfotec.sortiz0640.ul.UI;
+import cr.ac.ucenfotec.sortiz0640.ul.Validations;
 import cr.ac.ucenfotec.sortiz0640.ul.ViewOperacion;
 
 import java.io.IOException;
@@ -9,14 +11,21 @@ public class ControllerOperacion {
 
     // Controlador de Operaciones [Cuentas]
 
-    private UI ui = new UI(); // Clase de métodos para lectura y escritura en consola
-    private ViewOperacion interfaz = new ViewOperacion(); //
+    private UI interfaz = new UI(); // Clase de métodos para lectura y escritura en consola
+    private ViewOperacion view = new ViewOperacion(); //
+    private Validations validator = new Validations();
+    private GestorOperacion g;
+
+    public ControllerOperacion(GestorOperacion gestor) {
+        this.g = gestor;
+    }
+
 
     public void start() throws IOException {
         int opcion = -1;
         do {
-            interfaz.mostrarMenu();
-            opcion = ui.leerOpcion();
+            view.mostrarMenu();
+            opcion = interfaz.leerOpcion();
             procesarOpcion(opcion);
         } while (opcion != 0);
     }
@@ -26,19 +35,29 @@ public class ControllerOperacion {
             case 1: deposito(); break;
             case 2: retiro(); break;
             case 0: break;
-            default: ui.imprimirMensaje("Opción no válida. Intente nuevamente! \n");
+            default: interfaz.imprimirMensaje("[INFO] Opción no válida. Intente nuevamente! \n");
         }
     }
 
     public void deposito() throws IOException {
 
-        //todo: metodo para depositos en CUENTAS
+        int numCuenta = validator.numeroCuenta();
+
+        interfaz.imprimirMensaje("[INFO] Transaccion tipo DEPOSITO");
+        double monto = validator.monto();
+
+        interfaz.imprimirMensaje(g.deposito(monto, numCuenta));
 
     }
 
     public void retiro() throws IOException {
 
-        //todo: metodo para retiros en CUENTAS
+        int numCuenta = validator.numeroCuenta();
+
+        interfaz.imprimirMensaje("[INFO] Transaccion tipo RETIRO");
+        double monto = validator.monto();
+
+        interfaz.imprimirMensaje(g.retiro(monto, numCuenta));
 
     }
 }

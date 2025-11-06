@@ -12,10 +12,14 @@ public class ControllerCliente {
 
     // Controlador de Clientes
 
-    private UI interfaz = new UI(); // Clase de métodos para lectura y escritura en consola
-    private ViewCliente view = new ViewCliente(); //
+    private UI interfaz = new UI();
+    private ViewCliente view = new ViewCliente();
     private Validations validator = new Validations();
-    private GestorCliente g = new GestorCliente();
+    private GestorCliente g;
+
+    public ControllerCliente(GestorCliente gestorCliente) {
+        this.g = gestorCliente;
+    }
 
     public void start() throws IOException {
         int opcion = -1;
@@ -38,15 +42,14 @@ public class ControllerCliente {
     public void registrar() throws IOException {
 
         String nombre = validator.nombre();
-        String cedula = validator.cedula();
         String apellido = validator.apellido();
+        String cedula = validator.cedula();
 
-        interfaz.imprimirMensaje(g.agregarCliente(nombre, cedula, apellido));
+        interfaz.imprimirMensaje(g.agregarCliente(nombre, apellido, cedula));
 
     }
 
     public void listar() throws IOException {
-        //todo: listar todos los clientes registrados
 
         if (!g.existenClientes()) {
             interfaz.imprimirMensaje("[INFO] No existen clientes registrados");

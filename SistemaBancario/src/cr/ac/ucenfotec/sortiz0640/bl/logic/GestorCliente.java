@@ -14,6 +14,11 @@ public class GestorCliente {
     }
 
     public String agregarCliente(String nombre, String apellido, String cedula) {
+
+        if (db.getClientePorCedula(cedula) != null) {
+            return "[ERR] Ya existe un cliente con la cédula " + cedula;
+        }
+
         Cliente tmpCliente = new Cliente(nombre, apellido, cedula);
         db.agregarCliente(tmpCliente);
         return "[INFO] Cliente agregado correctamente!";
@@ -24,13 +29,11 @@ public class GestorCliente {
     }
 
     public Cliente getClientePorCedula(String cedula) {
-
         if (!existenClientes()) {
             return null;
         }
 
-        return getClientePorCedula(cedula);
-
+        return db.getClientePorCedula(cedula);
     }
 
     public ArrayList<String> getClientesToString() {

@@ -5,14 +5,13 @@ import java.util.Random;
 
 public class Cuenta {
 
-    private int cantCuentas = 0;
+    private int cantCuentas;
     private int numCuenta;
     private double saldo;
     private Date fechaCreacion;
     private int numOperaciones;
     private Cliente dueno;
     private ArrayList<Operacion> listaOperaciones = new ArrayList<>();
-
 
     public Cuenta (Cliente dueno) {
         this.dueno = dueno;
@@ -24,24 +23,23 @@ public class Cuenta {
 
     public String agregarOperacion(Operacion operacion) {
         listaOperaciones.add(operacion);
+        this.numOperaciones++;
         return "Operacion " + operacion.getNumero() + " agregada correctamente!";
 
     }
 
-    public String depositar(double monto) {
-
-        return "Deposito realizado correctamente";
+    public void depositar(double monto) {
+        this.saldo += monto;
     }
 
-    public String retirar(double monto) {
-
-        return "Retiro realizado correctamente";
+    public void retirar(double monto) {
+        this.saldo -= monto;
     }
 
     private int generarNumeroCuenta() {
-        int timestamp = Math.toIntExact(System.currentTimeMillis() % 100000); // últimos 5 dígitos del tiempo
-        int randomPart = new Random().nextInt(90) + 10; // 2 dígitos aleatorios
-        return timestamp + randomPart;
+        long timestamp = System.currentTimeMillis() % 10000000L;
+        int randomPart = new Random().nextInt(9) + 1;
+        return (int)(timestamp + randomPart * 10000000L);
     }
 
     public int getCantCuentas() {
@@ -106,14 +104,12 @@ public class Cuenta {
 
     @Override
     public String toString() {
-        return "Cuenta{" +
-                "cantCuentas=" + cantCuentas +
-                ", numCuenta=" + numCuenta +
-                ", saldo=" + saldo +
-                ", fechaCreacion=" + fechaCreacion +
-                ", numOperaciones=" + numOperaciones +
-                ", dueno=" + dueno +
-                ", listaOperaciones=" + listaOperaciones +
-                '}';
+        return "[NÚMERO CUENTA: " + numCuenta + "] " +
+                "[SALDO: " + saldo + "] " +
+                "[FECHA CREACIÓN: " + fechaCreacion + "] " +
+                "[NÚMERO OPERACIONES: " + numOperaciones + "] " +
+                "[DUEÑO: " + dueno.getNombre() + " " + dueno.getApellido() + "] " +
+                "[CÉDULA DUEÑO: " + dueno.getCedula() + "]\n" +
+                "[OPERACIONES: " + listaOperaciones + "]";
     }
 }

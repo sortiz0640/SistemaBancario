@@ -12,6 +12,7 @@ public class ViewApp {
         ui.imprimirMensaje("===================================");
         ui.imprimirMensaje("[1] Clientes");
         ui.imprimirMensaje("[2] Cuentas");
+        ui.imprimirMensaje("[3] Operaciones");
         ui.imprimirMensaje("[0] Salir");
         ui.imprimirMensaje("===================================");
     }

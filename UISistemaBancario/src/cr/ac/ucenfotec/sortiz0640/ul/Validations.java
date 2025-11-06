@@ -64,4 +64,39 @@ public class Validations {
         return cedula;
 
     }
+
+    public double monto() throws IOException {
+
+        double monto;
+
+        do {
+            interfaz.imprimirMensaje("Ingrese el monton de la transaccion: ");
+            monto = Double.parseDouble(interfaz.leerTexto());
+
+            if (monto <= 0) {
+                interfaz.imprimirMensaje("[ERR] El monto no puede ser menor o igual a 0.\n");
+            }
+
+        } while (monto <= 0);
+
+        return monto;
+
+    }
+
+    public int numeroCuenta() throws IOException {
+        int numeroCuenta;
+
+        do {
+            interfaz.imprimirMensaje("Ingrese el número de cuenta (8 dígitos): ");
+            numeroCuenta = interfaz.leerOpcion();
+
+            if (numeroCuenta < 10000000 || numeroCuenta > 99999999) {
+                interfaz.imprimirMensaje("[ERR] El número de cuenta debe tener exactamente 8 dígitos.\n");
+            }
+
+        } while (numeroCuenta < 10000000 || numeroCuenta > 99999999);
+
+        return numeroCuenta;
+    }
+
 }

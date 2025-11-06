@@ -17,10 +17,6 @@ public class DataCliente {
         clientes.add(cliente);
     }
 
-    public void agregarOperacion(Operacion operacion, Cliente cliente) {
-
-    }
-
     public Cliente getClientePorCedula(String cedula) {
         for (Cliente cliente : clientes) {
             if (cliente.getCedula().equals(cedula)) {

@@ -6,7 +6,7 @@ public class Cliente {
     private String nombre;
     private String apellido;
 
-    public Cliente(String cedula, String nombre, String apellido) {
+    public Cliente(String nombre, String apellido, String cedula) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -38,10 +38,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "cedula='" + cedula + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                '}';
+        return "[CÉDULA: " + cedula + "] " +
+                "[NOMBRE: " + nombre + "] " +
+                "[APELLIDO: " + apellido + "]";
     }
 }

@@ -5,7 +5,6 @@ import cr.ac.ucenfotec.sortiz0640.bl.logic.GestorCuenta;
 import cr.ac.ucenfotec.sortiz0640.ul.UI;
 import cr.ac.ucenfotec.sortiz0640.ul.Validations;
 import cr.ac.ucenfotec.sortiz0640.ul.ViewCuenta;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,11 +12,16 @@ public class ControllerCuenta {
 
     // Controlador de Cuentas
 
-    private UI interfaz = new UI(); // Clase de métodos para lectura y escritura en consola
-    private ViewCuenta view = new ViewCuenta(); //
-    private GestorCuenta gestorCuenta = new GestorCuenta();
-    private GestorCliente gestorCliente = new GestorCliente();
+    private UI interfaz = new UI();
+    private ViewCuenta view = new ViewCuenta();
+    private GestorCuenta gestorCuenta;
+    private GestorCliente gestorCliente;
     private Validations validator = new Validations();
+
+    public ControllerCuenta(GestorCuenta gestorCuenta, GestorCliente gestorCliente) {
+        this.gestorCuenta = gestorCuenta;
+        this.gestorCliente = gestorCliente;
+    }
 
     public void start() throws IOException {
         int opcion = -1;
@@ -62,18 +66,29 @@ public class ControllerCuenta {
         ArrayList<String> listaCuentas = gestorCuenta.getCuentasToStringPorCedula(validator.cedula());
 
         if (listaCuentas == null) {
-            interfaz.imprimirMensaje("[INFO] El numero de cedula especificado no pertenece a ninguna cuenta registrada.");
+            interfaz.imprimirMensaje("[ERR] El numero de cedula especificado no pertenece a ninguna cuenta registrada.");
             return;
         }
 
         interfaz.imprimirMensaje("[INFO] Lista de cuentas asociadas al cliente");
         for (String cuenta : listaCuentas) {
-            interfaz.imprimirMensaje(cuenta);
+            interfaz.imprimirMensaje(cuenta + "\n");
         }
 
     }
 
     public void listarCuentaSaldos() {
         //todo: muestra todos los saldos actualizados
+
+        ArrayList<String> listaCuentras = gestorCuenta.getSaldoCuentas();
+
+        if (listaCuentras == null) {
+            interfaz.imprimirMensaje("[ERR] No existen cuentas registradas.");
+            return;
+        }
+
+        for (String c : listaCuentras) {
+            interfaz.imprimirMensaje(c + "\n");
+        }
     }
 }
