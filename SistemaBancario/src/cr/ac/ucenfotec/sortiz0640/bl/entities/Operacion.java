@@ -22,6 +22,9 @@ public class Operacion {
     }
 
     private int generarNumeroOperacion() {
+
+        // Generado por IA para la creacion de los numeros de operacion
+
         int timestamp = Math.toIntExact(System.currentTimeMillis() % 200000); // últimos 5 dígitos del tiempo
         int randomPart = new Random().nextInt(70) + 20; // 2 dígitos aleatorios
         return timestamp + randomPart;

@@ -1,14 +1,11 @@
 package cr.ac.ucenfotec.sortiz0640.ul;
-
 import org.apache.commons.validator.routines.EmailValidator;
-
 import java.io.IOException;
 
 public class Validations {
 
     private UI interfaz = new UI();
     EmailValidator validator = EmailValidator.getInstance();
-
 
     public String nombre() throws IOException {
 
@@ -49,7 +46,7 @@ public class Validations {
     public String cedula() throws IOException {
 
         String cedula;
-        String patronCedula = "\\d-\\d{4}-\\d{4}"; // formato: 1-0000-0000
+        String patronCedula = "\\d-\\d{4}-\\d{4}";
 
         do {
             interfaz.imprimirMensaje("Ingrese la cédula [Formato 1-0000-0000]: ");

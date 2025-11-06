@@ -35,7 +35,7 @@ public class ControllerApp {
             case 2: cuentaController.start(); break;
             case 3: operacionController.start(); break;
             case 0: interfaz.imprimirMensaje("Cerrando el programa..."); break;
-            default: interfaz.imprimirMensaje("Opción no válida. Intente nuevamente! \n");
+            default: interfaz.imprimirMensaje("Opción no válida. Intente nuevamente! \n"); break;
         }
     }
 }

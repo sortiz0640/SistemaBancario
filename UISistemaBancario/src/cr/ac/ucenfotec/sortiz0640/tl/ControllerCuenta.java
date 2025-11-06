@@ -1,5 +1,4 @@
 package cr.ac.ucenfotec.sortiz0640.tl;
-
 import cr.ac.ucenfotec.sortiz0640.bl.logic.GestorCliente;
 import cr.ac.ucenfotec.sortiz0640.bl.logic.GestorCuenta;
 import cr.ac.ucenfotec.sortiz0640.ul.UI;
@@ -38,7 +37,7 @@ public class ControllerCuenta {
             case 2: listarCuenta(); break;
             case 3: listarCuentaSaldos(); break;
             case 0: break;
-            default: interfaz.imprimirMensaje("[INFO] Opción no válida. Intente nuevamente! \n");
+            default: interfaz.imprimirMensaje("[INFO] Opción no válida. Intente nuevamente! \n"); break;
         }
     }
 
@@ -78,7 +77,6 @@ public class ControllerCuenta {
     }
 
     public void listarCuentaSaldos() {
-        //todo: muestra todos los saldos actualizados
 
         ArrayList<String> listaCuentras = gestorCuenta.getSaldoCuentas();
 

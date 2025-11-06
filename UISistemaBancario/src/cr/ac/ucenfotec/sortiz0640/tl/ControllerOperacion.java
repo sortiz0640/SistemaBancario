@@ -11,7 +11,7 @@ public class ControllerOperacion {
 
     // Controlador de Operaciones [Cuentas]
 
-    private UI interfaz = new UI(); // Clase de métodos para lectura y escritura en consola
+    private UI interfaz = new UI();
     private ViewOperacion view = new ViewOperacion(); //
     private Validations validator = new Validations();
     private GestorOperacion g;
@@ -35,7 +35,7 @@ public class ControllerOperacion {
             case 1: deposito(); break;
             case 2: retiro(); break;
             case 0: break;
-            default: interfaz.imprimirMensaje("[INFO] Opción no válida. Intente nuevamente! \n");
+            default: interfaz.imprimirMensaje("[INFO] Opción no válida. Intente nuevamente! \n"); break;
         }
     }
 

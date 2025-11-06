@@ -37,6 +37,9 @@ public class Cuenta {
     }
 
     private int generarNumeroCuenta() {
+
+        // Generado por IA para la generacion de numeros de cuenta aleatorios
+
         long timestamp = System.currentTimeMillis() % 10000000L;
         int randomPart = new Random().nextInt(9) + 1;
         return (int)(timestamp + randomPart * 10000000L);
