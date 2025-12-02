@@ -3,7 +3,7 @@ package cr.ac.ucenfotec.sortiz0640.bl.entities;
 public class CuentaCorriente extends Cuenta {
 
     private static int cantCuentas = 0;
-    private int operacionesEsteMes = 0;  // Nuevo contador mensual
+    private int operacionesEsteMes = 0;
     private double cuotaMantenimiento;
     private int operacionesExentas;
     private double costoPorOperacionExcedente;

@@ -29,7 +29,6 @@ public class CuentaAhorro extends Cuenta {
         }
     }
 
-    // Getters y Setters
     public double getCuotaFijaMensual() {
         return cuotaFijaMensual;
     }
