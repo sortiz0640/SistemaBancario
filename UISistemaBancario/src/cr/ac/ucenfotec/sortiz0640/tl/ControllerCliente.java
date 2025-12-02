@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 public class ControllerCliente {
 
-    // Controlador de Clientes
-
     private UI interfaz = new UI();
     private ViewCliente view = new ViewCliente();
     private Validations validator = new Validations();

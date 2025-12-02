@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class ControllerOperacion {
 
-    // Controlador de Operaciones [Cuentas]
 
     private UI interfaz = new UI();
     private ViewOperacion view = new ViewOperacion(); //

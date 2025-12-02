@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 public class ControllerCuenta {
 
-    // Controlador de Cuentas
-
     private UI interfaz = new UI();
     private ViewCuenta view = new ViewCuenta();
     private GestorCuenta gestorCuenta;
@@ -121,7 +119,7 @@ public class ControllerCuenta {
             String opcion = interfaz.leerTexto().toLowerCase();
 
             if (opcion.equals("n")) {
-                return; // Sale si dice NO
+                return;
             } else if (!opcion.equals("s")) {
                 interfaz.imprimirMensaje("[ERR] Ingrese una opción válida.");
                 return;

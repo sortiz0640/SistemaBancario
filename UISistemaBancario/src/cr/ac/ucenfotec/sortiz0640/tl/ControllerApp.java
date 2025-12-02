@@ -7,8 +7,6 @@ import java.io.IOException;
 
 public class ControllerApp {
 
-    // Controlador del Menú Principal del Programa
-
     private UI interfaz = new UI();
     private ViewApp view = new ViewApp();
     private ControllerCliente clienteController;
