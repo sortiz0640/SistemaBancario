@@ -5,6 +5,7 @@ import cr.ac.ucenfotec.sortiz0640.ul.UI;
 import cr.ac.ucenfotec.sortiz0640.ul.Validations;
 import cr.ac.ucenfotec.sortiz0640.ul.ViewCuenta;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ControllerCuenta {
@@ -36,6 +37,7 @@ public class ControllerCuenta {
             case 1: registrar(); break;
             case 2: listarCuenta(); break;
             case 3: listarCuentaSaldos(); break;
+            case 4: aplicarComisiones(); break;
             case 0: break;
             default: interfaz.imprimirMensaje("[INFO] Opción no válida. Intente nuevamente! \n"); break;
         }
@@ -50,7 +52,30 @@ public class ControllerCuenta {
             return;
         }
 
-        interfaz.imprimirMensaje(gestorCuenta.agregarCuenta(cedulaCliente));
+        String tipoCuenta = solicitarTipoCuenta();
+
+        if (tipoCuenta != null) {
+            interfaz.imprimirMensaje(gestorCuenta.agregarCuenta(cedulaCliente, tipoCuenta));
+            return;
+        }
+
+        interfaz.imprimirMensaje("El tipo de cuenta especificado no es valido. Intente nuevamente");
+
+    }
+
+    public String solicitarTipoCuenta() throws IOException {
+
+        int opcion = 0;
+        interfaz.imprimirMensaje("[INFO]S Seleccione el tipo de cuenta: AHORRO [1] CORRIENTE [2]");
+        opcion = Integer.parseInt(interfaz.leerTexto());
+
+        if  (opcion == 1) {
+            return "AHORRO";
+        } else if (opcion == 2) {
+            return "CORRIENTE";
+        } else {
+            return null;
+        }
 
     }
 
@@ -88,5 +113,25 @@ public class ControllerCuenta {
         for (String c : listaCuentras) {
             interfaz.imprimirMensaje(c + "\n");
         }
+    }
+
+    public void aplicarComisiones() throws IOException {
+        if (!esPrimerDiaMes()) {
+            interfaz.imprimirMensaje("[INFO] El día actual no es primero de mes. ¿Desea aplicar las comisiones de igual forma? [S][N]");
+            String opcion = interfaz.leerTexto().toLowerCase();
+
+            if (opcion.equals("n")) {
+                return; // Sale si dice NO
+            } else if (!opcion.equals("s")) {
+                interfaz.imprimirMensaje("[ERR] Ingrese una opción válida.");
+                return;
+            }
+        }
+
+        interfaz.imprimirMensaje(gestorCuenta.aplicarComisionesMensuales());
+    }
+
+    private boolean esPrimerDiaMes() {
+        return LocalDate.now().getDayOfMonth() == 1;
     }
 }

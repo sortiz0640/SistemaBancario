@@ -3,27 +3,33 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-public class Cuenta {
+public abstract class Cuenta {
 
-    private int cantCuentas;
     private int numCuenta;
     private double saldo;
     private Date fechaCreacion;
     private int numOperaciones;
+    private int numOperacionesMes;
     private Cliente dueno;
     private ArrayList<Operacion> listaOperaciones = new ArrayList<>();
 
-    public Cuenta (Cliente dueno) {
+    public Cuenta() {
+
+    }
+
+    public Cuenta(Cliente dueno) {
         this.dueno = dueno;
         this.saldo = 0;
         this.fechaCreacion = new Date();
-        this.cantCuentas = cantCuentas++;
         this.numCuenta = generarNumeroCuenta();
     }
+
+    public abstract double cobrarComisiones();
 
     public String agregarOperacion(Operacion operacion) {
         listaOperaciones.add(operacion);
         this.numOperaciones++;
+        this.numOperacionesMes++;
         return "Operacion " + operacion.getNumero() + " agregada correctamente!";
 
     }
@@ -43,14 +49,6 @@ public class Cuenta {
         long timestamp = System.currentTimeMillis() % 10000000L;
         int randomPart = new Random().nextInt(9) + 1;
         return (int)(timestamp + randomPart * 10000000L);
-    }
-
-    public int getCantCuentas() {
-        return cantCuentas;
-    }
-
-    public void setCantCuentas(int cantCuentas) {
-        this.cantCuentas = cantCuentas;
     }
 
     public int getNumCuenta() {
@@ -101,6 +99,14 @@ public class Cuenta {
         return listaOperaciones;
     }
 
+    public int getNumOperacionesMes() {
+        return numOperacionesMes;
+    }
+
+    public void setNumOperacionesMes(int numOperacionesMes) {
+        this.numOperacionesMes = numOperacionesMes;
+    }
+
     public void setListaOperaciones(ArrayList<Operacion> listaOperaciones) {
         this.listaOperaciones = listaOperaciones;
     }
@@ -115,4 +121,5 @@ public class Cuenta {
                 "[CÉDULA DUEÑO: " + dueno.getCedula() + "]\n" +
                 "[OPERACIONES: " + listaOperaciones + "]";
     }
+
 }

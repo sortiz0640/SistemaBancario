@@ -1,8 +1,6 @@
 package cr.ac.ucenfotec.sortiz0640.bl.logic;
 
-import cr.ac.ucenfotec.sortiz0640.bl.entities.Cliente;
-import cr.ac.ucenfotec.sortiz0640.bl.entities.Cuenta;
-import cr.ac.ucenfotec.sortiz0640.bl.entities.Operacion;
+import cr.ac.ucenfotec.sortiz0640.bl.entities.*;
 import cr.ac.ucenfotec.sortiz0640.dl.DataCuenta;
 
 import java.util.ArrayList;
@@ -17,12 +15,25 @@ public class GestorCuenta {
         this.gestorCliente = gestorCliente;
     }
 
-    public String agregarCuenta(String cedula) {
-
+    public String agregarCuenta(String cedula, String tipoCuenta) {
         Cliente dueno = gestorCliente.getClientePorCedula(cedula);
-        Cuenta tmpCuenta = new Cuenta(dueno);
+
+        if (dueno == null) {
+            return "[ERR] Cliente no encontrado";
+        }
+
+        Cuenta tmpCuenta = null;
+
+        if (tipoCuenta.equalsIgnoreCase("AHORRO")) {
+            tmpCuenta = new CuentaAhorro(dueno);
+        }
+
+        if (tipoCuenta.equalsIgnoreCase("CORRIENTE")) {
+            tmpCuenta = new CuentaCorriente(dueno);
+        }
+
         db.agregarCuenta(tmpCuenta);
-        return "[INFO] Cuenta [" + tmpCuenta.getNumCuenta() + "] agregada correctamente!";
+        return "[INFO] Cuenta " + tipoCuenta + " [" + tmpCuenta.getNumCuenta() + "] agregada correctamente!";
     }
 
     public Cuenta getCuentaPorNumCuenta(int numCuenta) {
@@ -68,7 +79,7 @@ public class GestorCuenta {
         cuenta.agregarOperacion(operacion);
         cuenta.retirar(operacion.getMonto());
 
-        return "[INFO] El deposito por el monto de [" + operacion.getMonto() + "] en la cuenta [" + cuenta.getNumCuenta() + "] se ha realizado correctamente!\n" + getSaldoCuentaPorNumCuenta(numCuenta);
+        return "[INFO] El retiro por el monto de [" + operacion.getMonto() + "] en la cuenta [" + cuenta.getNumCuenta() + "] se ha realizado correctamente!\n" + getSaldoCuentaPorNumCuenta(numCuenta);
     }
 
     public String getSaldoCuentaPorNumCuenta(int numCuenta) {
@@ -108,5 +119,21 @@ public class GestorCuenta {
 
         return saldoCuentas;
 
+    }
+
+    public String aplicarComisionesMensuales() {
+        if (!existenCuentas()) {
+            return "[ERR] No hay cuentas registradas";
+        }
+
+        StringBuilder resultado = new StringBuilder("[INFO] Aplicando comisiones mensuales:\n");
+        for (Cuenta cuenta : db.getCuentas()) {
+            if (cuenta instanceof CuentaAhorro) {
+                resultado.append(((CuentaAhorro) cuenta).aplicarComisionMensual()).append("\n");
+            } else if (cuenta instanceof CuentaCorriente) {
+                resultado.append(((CuentaCorriente) cuenta).aplicarComisionMensual()).append("\n");
+            }
+        }
+        return resultado.toString();
     }
 }

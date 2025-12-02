@@ -13,6 +13,7 @@ public class ViewCuenta {
         ui.imprimirMensaje("[1] Registrar Cuenta");
         ui.imprimirMensaje("[2] Listar Cuentas de Cliente [Numero Cédula]");
         ui.imprimirMensaje("[3] Listar Saldos de Cuentas ");
+        ui.imprimirMensaje("[4] Aplicar comisiones ");
         ui.imprimirMensaje("[0] Regresar");
         ui.imprimirMensaje("===================================");
     }
